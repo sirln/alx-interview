@@ -37,7 +37,7 @@ def isWinner(x, nums):
     maria_wins = 0
     ben_wins = 0
     for n in nums:
-        primes = sieve_of_eratosthenes(n)
+        primes = sieve_of_eratosthenes(n + 1)
         if can_win(n, primes):
             ben_wins += 1
         else:
