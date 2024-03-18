@@ -16,7 +16,7 @@ def sieve_of_eratosthenes(limit):
             for i in range(p * p, limit + 1, p):
                 primes[i] = False
         p += 1
-    return [p in range(2, limit + 1) if primes[p]]
+    return [p for p in range(2, limit + 1) if primes[p]]
 
 
 def can_win(n, primes):
