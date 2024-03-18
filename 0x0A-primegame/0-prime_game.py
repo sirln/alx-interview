@@ -12,7 +12,7 @@ def sieve_of_eratosthenes(limit):
     primes = [True for i in range(limit + 1)]
     p = 2
     while (p * p <= limit):
-        if (primes[p] == True):
+        if primes[p]:
             for i in range(p * p, limit + 1, p):
                 primes[i] = False
         p += 1
