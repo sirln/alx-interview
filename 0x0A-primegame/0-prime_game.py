@@ -9,45 +9,44 @@ def sieve_of_eratosthenes(limit):
     Sieve of Eratosthenes algorithm to generate
     prime numbers up to a given limit.
     '''
-    primes = [True for i in range(limit + 1)]
+    primes = [True] * (limit + 1)
     p = 2
-    while (p * p <= limit):
+    while p * p <= limit:
         if primes[p]:
             for i in range(p * p, limit + 1, p):
                 primes[i] = False
         p += 1
-    return [p for p in range(2, limit + 1) if primes[p]]
+    return primes
 
 
-def can_win(n, primes):
+def count_primes(n):
     '''
-    Determine if a player can win a round of the game.
+    Count the number of prime numbers up to a given n.
     '''
-    for prime in primes:
-        if n % (prime + 1) == 0:
-            return False
-    return True
+    primes = sieve_of_eratosthenes(n)
+    count = sum(1 for prime in primes if prime)
+    return count
 
 
 def isWinner(x, nums):
     '''
-    Determine the winner of multiple rounds of the game.
+    Determine the winner based on whether the number
+    of primes is even or odd.
     '''
     if x <= 0 or not nums:
         return None
 
-    maria_wins = 0
-    ben_wins = 0
-    for n in nums:
-        primes = sieve_of_eratosthenes(n + 1)
-        if can_win(n, primes):
-            ben_wins += 1
+    ben = 0
+    maria = 0
+    for num in nums:
+        if count_primes(num) % 2 == 0:
+            ben += 1
         else:
-            maria_wins += 1
+            maria += 1
 
-    if maria_wins > ben_wins:
-        return "Maria"
-    elif maria_wins < ben_wins:
+    if ben > maria:
         return "Ben"
+    elif ben < maria:
+        return "Maria"
     else:
         return None
