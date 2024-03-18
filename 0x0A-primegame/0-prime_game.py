@@ -24,14 +24,10 @@ def can_win(n, primes):
     '''
     Determine if a player can win a round of the game.
     '''
-#    for prime in primes:
-#        if n % (prime + 1) == 0:
-#            return False
-#    return True
     for prime in primes:
-        if n % prime == 0:
-            return True
-    return False
+        if n % (prime + 1) == 0:
+            return False
+    return True
 
 
 def isWinner(x, nums):
