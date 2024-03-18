@@ -9,15 +9,14 @@ def sieve_of_eratosthenes(limit):
     Sieve of Eratosthenes algorithm to generate
     prime numbers up to a given limit.
     '''
-    primes = [True] * (limit + 1)
-    primes[0] = primes[1] = False
+    primes = [True for i in range(limit + 1)]
     p = 2
-    while p * p <= limit:
-        if primes[p]:
+    while (p * p <= limit):
+        if (primes[p] == True):
             for i in range(p * p, limit + 1, p):
                 primes[i] = False
         p += 1
-    return [i for i in range(limit + 1) if primes[i]]
+    return [p in range(2, limit + 1) if primes[p]]
 
 
 def can_win(n, primes):
